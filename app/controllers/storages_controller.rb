@@ -19,11 +19,7 @@ class StoragesController < ApplicationController
   end
 
   def show
-    if @storage.user == current_user
-      @bookings = @storage.bookings
-    else
-      @booking = Booking.new
-    end
+    @booking = Booking.new
   end
 
   def new

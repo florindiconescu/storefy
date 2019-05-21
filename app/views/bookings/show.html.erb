@@ -1,2 +1,7 @@
-<h1>Bookings#show</h1>
-<p>Find me in app/views/bookings/show.html.erb</p>
+<%= @booking.user.first_name %>
+<%= @booking.status %>
+<%= @booking.storage.title %>
+<p>Price: <%= @booking.total_price %></p>
+<p>Check-in: <%= @booking.start_date %> </p>
+<p>Check-out: <%= @booking.end_date %> </p>
+<p>Belongs to: <%= @booking.storage.user.first_name %> </p>
