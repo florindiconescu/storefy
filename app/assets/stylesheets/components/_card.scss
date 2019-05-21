@@ -1,0 +1,46 @@
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-storage {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 700px;
+  margin-top: 24px;
+}
+
+.card-storage > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-storage h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-storage p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card-storage .card-storage-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.card-storage-infos .card-storage-user {
+  position: absolute;
+  right: 16px;
+  top: -20px;
+  width: 40px;
+}
