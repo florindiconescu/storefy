@@ -1,8 +1,8 @@
 <% @storages.each do |storage| %>
-<%= storage.title %>
+<h2>title: <%= storage.title %></h2>
 <!-- implement the link to title that redirects to the show page -->
-<%= storage.price %>
-<%= storage.sqm %>
-<%= storage.description %>
-<%=  %>
+<p>Price: <%= storage.price %></p>
+<p>Sqm: <%= storage.sqm %></p>
+<p>Description: <%= storage.description %></p>
+<br>
 <% end %>
