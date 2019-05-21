@@ -1,8 +1,17 @@
 class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
 
+  def my_storages
+    @storages = current_user.storages
+  end
+
   def index
-    @storages = Storage.all
+    if params[:query]
+      @storages = Storage.where(location: params[:query])
+
+    else
+      @storages = Storage.all
+    end
   end
 
   def show
