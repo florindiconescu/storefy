@@ -14,7 +14,7 @@
             <p> the storage is located it the <%= storage.address %> district</p>
           </div>
             <h2 class="card-storage-sqm"><%= storage.sqm %> sqm</h2>
-            <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-storage-user avatar-bordered" class="card-storage-user avatar-bordered">
+            <%= cl_image_tag storage.user.photo, class: "card-storage-user avatar-bordered" %>
         </div>
       </div>
     <% end %>
