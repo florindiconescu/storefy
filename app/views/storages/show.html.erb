@@ -17,13 +17,13 @@
 <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
 <% if @storage.user == current_user %>
   <%= @storage.bookings.each do |booking| %>
-    <p>User: <%= booking.user.first_name %></p>
+    <p>Guest: <%= booking.user.first_name %></p>
     <p>Status: <%= booking.status %></p>
     <p>Title: <%= booking.storage.title %></p>
-    <p>Price: <%= booking.total_price %></p>
+    <p>Price: <%= booking.total_price %> €</p>
     <p>Check-in: <%= booking.start_date %> </p>
     <p>Check-out: <%= booking.end_date %> </p>
-    <p>Duration: <%= booking.end_date - booking.start_date %></p>
+    <p>Duration: <%= (booking.end_date - booking.start_date).to_i %> days</p>
     <p>Belongs to: <%= booking.storage.user.first_name %> </p>
     <br>
   <% end %>

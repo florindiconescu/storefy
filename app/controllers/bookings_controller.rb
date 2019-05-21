@@ -18,6 +18,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(strong_params)
     @booking.storage = @storage
     @booking.user = @user
+    @booking.total_price = @booking.storage.price / 30 * (@booking.end_date - @booking.start_date).to_i
     if @booking.save
       redirect_to storage_path(@storage)
     else
