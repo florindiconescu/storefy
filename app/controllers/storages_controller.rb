@@ -18,9 +18,17 @@ class StoragesController < ApplicationController
   end
 
   def new
+    @storage = Storage.new
   end
 
   def create
+    @storage = Storage.new(storage_params)
+    @storage.user = current_user
+    if @storage.save
+      redirect_to storage_path(@storage)
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -34,7 +42,8 @@ class StoragesController < ApplicationController
 
   private
 
-  def strong_params
+  def storage_params
+    params.require(:storage).permit(:title, :price, :sqm, :address, :description, :user_id)
   end
 
   def set_storage
