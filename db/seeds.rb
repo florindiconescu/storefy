@@ -6,5 +6,5 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Storage.destroy_all
-# 20.times { Storage.create!(title:Faker::Lorem.word, price:Faker::Number.within(50..1000), sqm:Faker::Number.within(1..100), address:Faker::Address.city)}
+Storage.destroy_all
+20.times { Storage.create(title:Faker::Lorem.word, price:Faker::Number.within(50..1000), sqm:Faker::Number.within(1..100), address:Faker::Address.city)}
