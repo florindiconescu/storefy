@@ -4,16 +4,17 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 450px;
+  height: 550px;
+  margin-bottom: 40px;
 }
 
 .container-top h1 {
   color: black;
-  background-color: yellow;
+  background-color: #FFE600;
   opacity: 0.8;
   border-radius: 10px;
   padding: 10px 15px;
-  margin-top: 80px;
+  margin-top: 150px;
 }
 
 .search-by {
@@ -38,3 +39,22 @@
   background-color: white;
 }
 
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 100px;
+}
+
+.card {
+  height: 100%;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 0 5px lightgrey;
+  padding: 20px;
+}
+
+.card h3 {
+  background-color: #FFE600;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
