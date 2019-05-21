@@ -16,9 +16,9 @@
     </div>
     <div class="search-by">
       <form>
-        <input type="text" class="search-by-location" id="location" placeholder="Enter your location...">
+        <input type="text" class="search-by-location" name="location" placeholder="Enter your location...">
         <br>
-        <select class="select-sqm">
+        <select class="select-sqm" name="sqm">
           <option selected>Dimensions</option>
           <option value="1">One</option>
           <option value="2">Two</option>
@@ -27,7 +27,7 @@
         </select>
         <br>
         <br>
-        <input type="submit" class="search-now" value="Search Now">
+        <%= link_to 'Search Now', storages_path, class: 'search-now' %>
       </form>
     </div>
   </div>
