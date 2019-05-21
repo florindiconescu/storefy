@@ -1,2 +1,55 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My landing page</title>
+  <!-- We need this line below for responsiveness! -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="banner">
+    <div class="container-top d-flex justify-content-around">
+      <h1>Rent Bigger</h1>
+      <h1>Store More</h1>
+      <h1>Pay Less</h1>
+    </div>
+    <div class="search-by">
+      <form>
+        <input type="text" class="search-by-location" id="location" placeholder="Enter your location...">
+        <br>
+        <select class="select-sqm">
+          <option selected>Dimensions</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" class="search-now" value="Search Now">
+      </form>
+    </div>
+  </div>
+  <div class="container">
+      <h2 class="text-center">How it works</h2>
+      <div class="cards">
+      <div class="card">
+        <img src="images/apply.svg">
+        <h3></h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <img src="images/learn.svg">
+        <h3></h3>
+        <p></p>
+      </div>
+      <div class="card">
+        <img src="images/product.svg">
+        <h3></h3>
+        <p></p>
+      </div>
+      </div>
+    </div>
+</body>
+
