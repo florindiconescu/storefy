@@ -34,7 +34,7 @@ class StoragesController < ApplicationController
     @storage = Storage.new(storage_params)
     @storage.user = current_user
     if @storage.save
-      redirect_to storage_path(@storage)
+      redirect_to my_storages_path
     else
       render 'new'
     end
@@ -44,9 +44,13 @@ class StoragesController < ApplicationController
   end
 
   def update
+    @storage.update(storage_params)
+    redirect_to my_storages_path
   end
 
   def destroy
+    @storage.destroy
+    redirect_to my_storages_path
   end
 
   private
