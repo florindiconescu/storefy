@@ -1,1 +1,13 @@
-new.html.erb
+<h1>List a new storage</h1>
+<%= simple_form_for @storage do |f| %>
+  <%= f.error_notification %>
+  <p><%= f.input :title %></p>
+  <p><%= f.input :address %></p>
+  <p><%= f.input :sqm %></p>
+  <p><%= f.input :description %></p>
+  <p><%= f.input :price %></p>
+  <%= f.button :submit, class: "btn-outline-success" %>
+  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
+  <%= link_to 'Back to storages', '#', class: "btn btn-outline-info" %>
+<% end %>
+
