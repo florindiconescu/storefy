@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :set_storage, only: [:create]
 
   def index
     @bookings = current_user.bookings
@@ -14,15 +15,21 @@ class BookingsController < ApplicationController
 
   def create
     @user = current_user
-    @storage = Storage.find(params[:storage_id])
     @booking = Booking.new(strong_params)
     @booking.storage = @storage
     @booking.user = @user
+    @booking.total_price = @booking.storage.price / 30 * (@booking.end_date - @booking.start_date).to_i
     if @booking.save
       redirect_to storage_path(@storage)
     else
       render 'storage/show'
     end
+  end
+
+  private
+
+  def set_storage
+    @storage = Storage.find(params[:storage_id])
   end
 
   def strong_params
