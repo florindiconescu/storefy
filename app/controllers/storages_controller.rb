@@ -45,7 +45,7 @@ class StoragesController < ApplicationController
 
   def update
     @storage.update(storage_params)
-    redirect_to my_storages_path
+    redirect_to storage_path(@storage)
   end
 
   def destroy
