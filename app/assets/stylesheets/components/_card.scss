@@ -44,3 +44,45 @@ a {
   top: -20px;
   width: 40px;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-booking {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 700px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.card-booking > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-booking h5 {
+  font-weight: bold;
+  margin-left: 10px;
+  margin-top: 10px;
+
+}
+
+.card-booking p {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+h1 span {
+  background-color: #ffe600;
+  padding: 10px;
+}
+
+h5 span {
+  background-color: #ffe600;
+}
+
