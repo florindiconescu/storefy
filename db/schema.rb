@@ -9,8 +9,8 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 2019_05_22_101339) do
+ActiveRecord::Schema.define(version: 2019_05_22_095619)
+ActiveRecord::Schema.define(version: 2019_05_22_101339)
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_101339) do
     t.datetime "updated_at", null: false
     t.float "longitude"
     t.float "latitude"
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_storages_on_user_id"
   end
 
