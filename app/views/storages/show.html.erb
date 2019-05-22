@@ -16,7 +16,7 @@
 <%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-info" %>
 <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
 <% if @storage.user == current_user %>
-  <%= @storage.bookings.each do |booking| %>
+  <% @storage.bookings.each do |booking| %>
     <p>Guest: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
     <p>Status: <%= booking.status %></p>
     <p>Title: <%= booking.storage.title %></p>
@@ -35,5 +35,3 @@
     <%= f.button :submit, class: "btn-outline-success" %>
   <% end %>
 <% end %>
-
-
