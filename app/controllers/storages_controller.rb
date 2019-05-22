@@ -2,11 +2,11 @@ class StoragesController < ApplicationController
   before_action :set_storage, only: [:show, :edit, :update, :destroy]
 
   def my_storages
-    @storages = current_user.storages
+    @storages = current_user.storages.where(active: true)
   end
 
   def index
-    @storages = Storage.all
+    @storages = Storage.all.where(active: true)
 
     if params[:location] # attention a l'input field name
       @storages = @storages.where(address: params[:location])
@@ -19,6 +19,10 @@ class StoragesController < ApplicationController
   end
 
   def show
+    if @storage.active == false
+      redirect_to root_path
+      flash[:alert] = "Sorry this storage doesn't exist anymore"
+    end
     @booking = Booking.new
   end
 
@@ -45,7 +49,8 @@ class StoragesController < ApplicationController
   end
 
   def destroy
-    @storage.destroy
+    @storage.active = false
+    @storage.save
     redirect_to my_storages_path
   end
 
