@@ -15,19 +15,19 @@
       <h1>Pay Less</h1>
     </div>
     <div class="search-by">
-      <form>
+      <form action="/storages" method="get">
         <input type="text" class="search-by-location" name="location" placeholder="Enter your location...">
         <br>
-        <select class="select-sqm" name="sqm">
-          <option selected>Dimensions</option>
+        <!-- <select class="select-sqm" name="sqm">
+          <option value="" selected>Dimensions</option>
           <option value="1">One</option>
           <option value="2">Two</option>
           <option value="3">Three</option>
           <option value="4">Four</option>
-        </select>
-        <br>
-        <br>
-        <%= link_to 'Search Now', storages_path, class: 'search-now' %>
+        </select> -->
+        <!-- <br> -->
+        <!-- <br> -->
+        <input type="submit" value="Search Now" class="search-now">
       </form>
     </div>
   </div>
