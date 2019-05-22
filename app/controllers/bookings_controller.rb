@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   before_action :set_storage, only: [:create]
 
   def index
-    @bookings = current_user.bookings
+    @bookings = current_user.bookingsr
   end
 
   def show
