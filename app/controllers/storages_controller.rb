@@ -6,16 +6,24 @@ class StoragesController < ApplicationController
   end
 
   def index
-    @storages = Storage.all.where(active: true)
+    @storages = Storage.where.not(active: false, latitude: nil, longitude: nil)
 
-    if params[:location] # attention a l'input field name
-      @storages = @storages.where(address: params[:location])
+    if params[:location].present? # attention a l'input field name
+      @storages = @storages.where("address ILIKE ?", "%#{params[:location]}%")
     end
 
-    if params[:sqm]
-      @storages = @storages.where(sqm: params[:sqm])
-    end
+    # if params[:sqm].present?
+    #   @storages = @storages.where(sqm: params[:sqm])
+    # end
     # I can add other filters if I want to add some on the results page like "Filter by price"
+    @markers = @storages.map do |storage|
+      {
+        lat: storage.latitude,
+        lng: storage.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { storage: storage }),
+        image_url: helpers.asset_url('red_pin.png')
+      }
+    end
   end
 
   def show
