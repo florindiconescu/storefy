@@ -1,13 +1,26 @@
-<% if @storage.photos.present? %>
+<div class="container d-flex justify-content-between">
+  <div class="photos">
+    <% if @storage.photos.present? %>
       <%= cl_image_tag @storage.photos.first.data, id: 'photo_upload' %>
       <div class="other-photos">
         <% @storage.photos.drop(1).each do |photo| %>
-        <%= cl_image_tag photo.data, id: 'photo_upload' %>
+          <%= cl_image_tag photo.data, id: 'photo_upload' %>
         <% end %>
       </div>
     <% else %>
       <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" class="w-50">
     <% end %>
+  </div>
+  <div class="m-4"
+    id="map"
+    style="width: 100%;
+    height: 50vh;
+    position: sticky;
+    top: 0;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
+</div>
 <div class="container d-flex justify-content-around">
   <div class="storage d-flex">
     <div class="storage-content">

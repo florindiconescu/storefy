@@ -35,6 +35,12 @@ class StoragesController < ApplicationController
       flash[:alert] = "Sorry this storage doesn't exist anymore"
     end
     @booking = Booking.new
+    @markers = [{
+      lat: @storage.latitude,
+      lng: @storage.longitude,
+      infoWindow: render_to_string(partial: "infowindow", locals: { storage: @storage }),
+      image_url: helpers.asset_url('red_pin.png')
+    }]
   end
 
   def new
