@@ -10,6 +10,7 @@
     <p>Volume: <%= @storage.sqm %> sqm</p>
     <p>Description: <%= @storage.description %></p>
   </div>
+  <%= cl_image_tag current_user.photo, id: "user_photo" %>
 </div>
 <br>
 <%= link_to 'My storages', my_storages_path, class: "btn btn-info" %>
