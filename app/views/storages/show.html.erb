@@ -23,7 +23,7 @@
       <% if policy(@storage).destroy? %>
       <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger" %>
       <% end %>
-      <%= cl_image_tag current_user.photo, id: "user_photo" %>
+      <%= cl_image_tag @storage.user.photo, id: "user_photo" %>
 
 
   <div class="title text-center mb-4">
