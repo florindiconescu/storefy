@@ -1,12 +1,21 @@
-<% @bookings.each do |booking| %>
-<p>User: <%= booking.user.first_name %></p>
-<p>Status: <%= booking.status %></p>
-<p>Title: <%= booking.storage.title %></p>
-<p>Price: <%= booking.total_price %></p>
-<p>Check-in: <%= booking.start_date %> </p>
-<p>Check-out: <%= booking.end_date %> </p>
-<p>Duration: <%= booking.end_date - booking.start_date %></p>
-<p>Belongs to: <%= booking.storage.user.first_name %> </p>
-<br>
-<% end %>
+<h1 class="text-center mt-4 mb-4">Details of all your <span>Bookings</span></h1>
+
+<div class="cards-bookings mb-5">
+  <% @bookings.each do |booking| %>
+    <div class="card-booking">
+      <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80">
+        <div class="card-booking-infos">
+          <h5><span><%= booking.storage.title %></span></h5>
+          <p><strong>User:</strong> <%= booking.user.first_name.capitalize %></p>
+          <p><strong>Status:</strong> <%= booking.status %></p>
+
+          <p><strong>Price:</strong> <%= booking.storage.price / 30 * (booking.end_date - booking.start_date).to_i %> €</p>
+          <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
+          <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
+          <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
+          <p><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
+        </div>
+    </div>
+  <% end %>
+</div>
 

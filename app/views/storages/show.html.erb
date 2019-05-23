@@ -10,6 +10,7 @@
     <p>Volume: <%= @storage.sqm %> sqm</p>
     <p>Description: <%= @storage.description %></p>
   </div>
+  <%= cl_image_tag current_user.photo, id: "user_photo" %>
 </div>
 <br>
 <%= link_to 'My storages', my_storages_path, class: "btn btn-info" %>
@@ -24,17 +25,25 @@
   <% end %>
 
 <% if @storage.user == current_user %>
+<h3 class="text-center mb-3">Upcoming Bookings</h3>
+<div class="card-booking">
   <% @storage.bookings.each do |booking| %>
-    <p>Guest: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-    <p>Status: <%= booking.status %></p>
-    <p>Title: <%= booking.storage.title %></p>
-    <p>Price: <%= booking.total_price %> €</p>
-    <p>Check-in: <%= booking.start_date %> </p>
-    <p>Check-out: <%= booking.end_date %> </p>
-    <p>Duration: <%= (booking.end_date - booking.start_date).to_i %> days</p>
-    <p>Belongs to: <%= booking.storage.user.first_name %> </p>
+  <div class="card-booking-infos">
+    <p class="mt-2"><strong>Guest:</strong> <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+    <p><strong>Status:</strong> <%= booking.status %></p>
+    <% if booking.status == 'pending' %>
+      <p><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
+      <p><%= link_to 'Decline', denied_path(booking), method: :patch %></p>
+    <% end %>
+    <p><strong>Price:</strong> <%= booking.total_price %> €</p>
+    <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
+    <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
+    <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
+    <p class="mb-2"><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
     <br>
+  </div>
   <% end %>
+</div>
 <% else %>
   <h1>Book</h1>
   <%= simple_form_for [@storage, @booking] do |f| %>

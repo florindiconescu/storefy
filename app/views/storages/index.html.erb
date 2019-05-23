@@ -1,6 +1,6 @@
 
 <h1>Welcome to Storify's storages</h1>
-
+<div class="page d-flex">
 <div class="cards-storages">
   <% @storages.each do |storage| %>
     <%= link_to storage_path(storage) do%>
@@ -19,4 +19,12 @@
       </div>
     <% end %>
   <% end %>
+</div>
+<div class="m-4"
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
 </div>

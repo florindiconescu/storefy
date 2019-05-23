@@ -1,0 +1,12 @@
+<h1>Photos#index</h1>
+
+<%= simple_form_for [@storage, @photo] do |f|  %>
+  <%= f.input :data %>
+  <%= f.input :data_cache, as: :hidden %>
+  <%= f.submit 'Add another photo' %>
+<% end %>
+
+
+<%  @photos.each do |photo| %>
+  <%= image_tag photo.data %>
+<% end %>

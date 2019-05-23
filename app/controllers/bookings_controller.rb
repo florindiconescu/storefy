@@ -20,6 +20,7 @@ class BookingsController < ApplicationController
     @user = current_user
     @booking = Booking.new(strong_params)
     authorize @booking
+    @booking.status = 'pending'
     @booking.storage = @storage
     @booking.user = @user
     @booking.total_price = @booking.storage.price / 30 * (@booking.end_date - @booking.start_date).to_i
@@ -30,6 +31,20 @@ class BookingsController < ApplicationController
     end
   end
 
+  def approved
+    @booking = Booking.find(params[:id])
+    @booking.status = 'accepted'
+    @booking.save
+    redirect_to storage_path(@booking.storage)
+  end
+
+  def denied
+    @booking = Booking.find(params[:id])
+    @booking.status = 'denied'
+    @booking.save
+    redirect_to storage_path(@booking.storage)
+  end
+
   private
 
   def set_storage
@@ -37,6 +52,6 @@ class BookingsController < ApplicationController
   end
 
   def strong_params
-    params.require(:booking).permit(:end_date, :start_date, :storage_id, :user_id)
+    params.require(:booking).permit(:end_date, :start_date, :storage_id, :user_id, :status)
   end
 end
