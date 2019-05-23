@@ -1,7 +1,7 @@
-<h1>Upload photos for your storage</h1>
+<h1>Upload photos for your <%= link_to @storage.title, storage_path(@storage) %></h1>
 
 <%= simple_form_for [@storage, @photo] do |f|  %>
-  <%= f.input :data %>
+  <%= f.input :data, label: false %>
   <%= f.input :data_cache, as: :hidden %>
   <%= f.submit 'Add photo' %>
 <% end %>
