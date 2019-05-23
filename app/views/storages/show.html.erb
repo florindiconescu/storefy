@@ -1,6 +1,5 @@
-<h1><%= @storage.title %></h1>
-
-<div class="storage d-flex p-3">
+<div class="storage">
+  <h1><%= @storage.title %></h1>
   <div class="storage-img">
     <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" class="w-50">
   </div>
@@ -13,9 +12,11 @@
   <%= cl_image_tag current_user.photo, id: "user_photo" %>
 </div>
 <br>
-<%= link_to 'My storages', my_storages_path, class: "btn btn-info" %>
-<%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-info" %>
-<%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
+<%= link_to 'My storages', my_storages_path, class: "btn" %>
+<%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn" %>
+<%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn" %>
+
+
 <% if @storage.user == current_user %>
 <h3 class="text-center mb-3">Upcoming Bookings</h3>
 <div class="card-booking">
@@ -36,6 +37,7 @@
   </div>
   <% end %>
 </div>
+
 <% else %>
   <h1>Book</h1>
   <%= simple_form_for [@storage, @booking] do |f| %>
