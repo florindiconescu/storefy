@@ -1,0 +1,5 @@
+<%= cl_image_tag current_user.photo, id: "user_photo" %> <br>
+<%= @user.first_name %>
+<%= @user.last_name %> <br>
+<%= @user.email %> <br>
+<%= link_to "Edit my Profile", edit_user_registration_path %>
