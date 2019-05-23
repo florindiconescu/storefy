@@ -1,12 +1,16 @@
-<h1>Photos#index</h1>
+<h1>Upload photos for your storage</h1>
 
 <%= simple_form_for [@storage, @photo] do |f|  %>
   <%= f.input :data %>
   <%= f.input :data_cache, as: :hidden %>
-  <%= f.submit 'Add another photo' %>
+  <%= f.submit 'Add photo' %>
 <% end %>
+
+
 
 
 <%  @photos.each do |photo| %>
-  <%= image_tag photo.data %>
+  <%= cl_image_tag photo.data, id: 'photo_upload' %>
+  <%= link_to 'Delete 🗑', photo, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
 <% end %>
+

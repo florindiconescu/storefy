@@ -10,7 +10,7 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
     @photo.storage = @storage
     @photo.save
-    raise
+    redirect_to storage_photos_path(@storage)
     # if @photo.save
     #   redirect_to storage_path(@storage)
     # else
@@ -19,14 +19,15 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    @photo.destroy
-    redirect_to
+    @photo.active = false
+    @photo.save
+    redirect_to storage_photos_path(@storage)
   end
 
   private
 
   def photo_params
-    params.require(:photo).permit(:data, :storage_id)
+    params.require(:photo).permit(:data)
   end
 
   def set_storage
