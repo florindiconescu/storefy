@@ -8,7 +8,9 @@
   color: rgba(0,0,0,0.3);
   bottom: 0;
   width: 100%;
+  position: fixed;
 }
+
 .footer-links {
   display: flex;
   align-items: center;
@@ -28,3 +30,6 @@
   color: black;
 }
 
+.main-content {
+  margin-bottom: 200px;
+}
