@@ -1,8 +1,4 @@
-<h1><%= @storage.title %></h1>
-
-<div class="storage d-flex p-3">
-  <div class="storage-img">
-    <% if @storage.photos.present? %>
+<% if @storage.photos.present? %>
       <%= cl_image_tag @storage.photos.first.data, id: 'photo_upload' %>
       <div class="other-photos">
         <% @storage.photos.drop(1).each do |photo| %>
@@ -12,52 +8,60 @@
     <% else %>
       <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80" class="w-50">
     <% end %>
+<div class="container d-flex justify-content-around">
+  <div class="storage d-flex">
+    <div class="storage-content">
+      <h1><%= @storage.title.capitalize %></h1>
+      <p>This storage is located in <%= @storage.address %></p>
+      <p><strong>Price:</strong> <%= @storage.price %> € / month</p>
+      <p><strong>Volume:</strong> <%= @storage.sqm %> sqm</p>
+      <p><strong>Description:</strong> <%= @storage.description %></p>
+      <%= link_to 'My storages', my_storages_path, class: "btn-storage" %>
+      <% if policy(@storage).edit? %>
+      <%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-outline-secondary" %>
+      <% end %>
+      <% if policy(@storage).destroy? %>
+      <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger" %>
+      <% end %>
+      <%= cl_image_tag current_user.photo, id: "user_photo" %>
+
+
+  <div class="title text-center mb-4">
+    <% if @storage.user == current_user %>
+    <h3>Bookings</h3>
+
+    <div class="cards-booking" >
+      <% @storage.bookings.each do |booking| %>
+      <div class="card-booking-infos d-flex justify-content-around p-4" style="width: 450px">
+        <div class="booking-info text-left mt-2">
+            <p class="mt-2"><strong>Guest:</strong> <%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
+            <p><strong>Price:</strong> <%= booking.total_price %> €</p>
+            <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
+            <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
+            <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
+            <p class="mb-2"><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
+            <br>
+        </div>
+        <div class="booking-status mt-2">
+          <p class="mt-2"><strong>Status:</strong> <%= booking.status %></p>
+          <% if booking.status == 'pending' %>
+          <p class="btn btn-outline-success btn-sm"><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
+          <p class="btn btn-outline-danger btn-sm"><%= link_to 'Decline', denied_path(booking), method: :patch %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+      <% end %>
   </div>
-  <div class="storage-content">
-    <p> the storage is located it the <%= @storage.address %> district</p>
-    <p>Price: <%= @storage.price %> € / month</p>
-    <p>Volume: <%= @storage.sqm %> sqm</p>
-    <p>Description: <%= @storage.description %></p>
-  </div>
-  <%= cl_image_tag @storage.user.photo, id: "user_photo" %>
-</div>
-<br>
-<%= link_to 'My storages', my_storages_path, class: "btn btn-info" %>
 
-
-  <% if policy(@storage).edit? %>
-    <%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-info" %>
-  <% end %>
-
-  <% if policy(@storage).destroy? %>
-    <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
-  <% end %>
-
-<% if @storage.user == current_user %>
-<h3 class="text-center mb-3">Upcoming Bookings</h3>
-<div class="card-booking">
-  <% @storage.bookings.each do |booking| %>
-  <div class="card-booking-infos">
-    <p class="mt-2"><strong>Guest:</strong> <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-    <p><strong>Status:</strong> <%= booking.status %></p>
-    <% if booking.status == 'pending' %>
-      <p><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
-      <p><%= link_to 'Decline', denied_path(booking), method: :patch %></p>
+    <% else %>
+    <div class="form border border-dark p-5">
+      <%= simple_form_for [@storage, @booking] do |f| %>
+        <h3>Book this storage</h3>
+        <p><%= f.input :start_date, as: :string, required: false, label: "Check-in", input_html: { class: "datepicker" }, placeholder: "Select a date" %></p>
+        <p><%= f.input :end_date, as: :string, required: false, label: "Check-out", input_html: { class: "datepicker" }, placeholder: "Select a date"  %></p>
+        <%= f.button :submit, class: "btn-book w-100 mt-3 mb-0" %>
+      <% end %>
+    </div>
     <% end %>
-    <p><strong>Price:</strong> <%= booking.total_price %> €</p>
-    <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
-    <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
-    <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
-    <p class="mb-2"><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
-    <br>
-  </div>
-  <% end %>
 </div>
-<% else %>
-  <h1>Book</h1>
-  <%= simple_form_for [@storage, @booking] do |f| %>
-    <p><%= f.input :start_date %></p>
-    <p><%= f.input :end_date %></p>
-    <%= f.button :submit, class: "btn-outline-success" %>
-  <% end %>
-<% end %>
