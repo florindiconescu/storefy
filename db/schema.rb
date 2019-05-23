@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_05_22_105858)
 ActiveRecord::Schema.define(version: 2019_05_22_124959)
-ActiveRecord::Schema.define(version: 2019_05_22_105858)
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,9 +46,9 @@ ActiveRecord::Schema.define(version: 2019_05_22_105858)
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.float "longitude"
     t.float "latitude"
-    t.boolean "active", default: true
     t.index ["user_id"], name: "index_storages_on_user_id"
   end
 

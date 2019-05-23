@@ -14,8 +14,16 @@
 </div>
 <br>
 <%= link_to 'My storages', my_storages_path, class: "btn btn-info" %>
-<%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-info" %>
-<%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
+
+
+  <% if policy(@storage).edit? %>
+    <%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-info" %>
+  <% end %>
+
+  <% if policy(@storage).destroy? %>
+    <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
+  <% end %>
+
 <% if @storage.user == current_user %>
 <h3 class="text-center mb-3">Upcoming Bookings</h3>
 <div class="card-booking">

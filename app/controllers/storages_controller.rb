@@ -6,6 +6,8 @@ class StoragesController < ApplicationController
   end
 
   def index
+    @storages = policy_scope(Storage)
+    @storages = Storage.all.where(active: true)
     @storages = Storage.where.not(active: false, latitude: nil, longitude: nil)
 
     if params[:location].present? # attention a l'input field name
@@ -27,6 +29,7 @@ class StoragesController < ApplicationController
   end
 
   def show
+    authorize @storage
     if @storage.active == false
       redirect_to root_path
       flash[:alert] = "Sorry this storage doesn't exist anymore"
@@ -36,10 +39,12 @@ class StoragesController < ApplicationController
 
   def new
     @storage = Storage.new
+    authorize @storage
   end
 
   def create
     @storage = Storage.new(storage_params)
+    authorize @storage
     @storage.user = current_user
     if @storage.save
       redirect_to my_storages_path
@@ -49,14 +54,17 @@ class StoragesController < ApplicationController
   end
 
   def edit
+    authorize @storage
   end
 
   def update
+    authorize @storage
     @storage.update(storage_params)
     redirect_to storage_path(@storage)
   end
 
   def destroy
+    authorize @storage
     @storage.active = false
     @storage.save
     redirect_to my_storages_path
@@ -70,5 +78,6 @@ class StoragesController < ApplicationController
 
   def set_storage
     @storage = Storage.find(params[:id])
+    authorize @storage
   end
 end

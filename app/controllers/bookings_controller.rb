@@ -2,20 +2,24 @@ class BookingsController < ApplicationController
   before_action :set_storage, only: [:create]
 
   def index
+    @bookings = policy_scope(Booking)
     @bookings = current_user.bookings
   end
 
   def show
+    authorize @booking
     @booking = Booking.find(params[:id])
   end
 
   def new
+    authorize @booking
     @booking = Booking.new
   end
 
   def create
     @user = current_user
     @booking = Booking.new(strong_params)
+    authorize @booking
     @booking.status = 'pending'
     @booking.storage = @storage
     @booking.user = @user
