@@ -6,6 +6,6 @@
   <p><%= f.input :description %></p>
   <p><%= f.input :price %></p>
   <%= f.button :submit, class: "btn-outline-success" %>
+  <%= link_to 'Add some pictures', storage_photos_path(@storage), class: "btn btn-outline-info" %>
   <%= link_to 'Back to storages', my_storages_path, class: "btn btn-outline-info" %>
 <% end %>
-

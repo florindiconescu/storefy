@@ -1,0 +1,23 @@
+#user_photo {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  height: 160px;
+  width: auto;
+  object-fit: cover;
+  object-position: 50% 50%
+}
+
+#user_photo:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+#photo_upload {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 5px;
+  height: 320px;
+  width: auto;
+  object-fit: cover;
+  object-position: 50% 50%
+}
