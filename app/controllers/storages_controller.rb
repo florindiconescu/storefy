@@ -3,6 +3,14 @@ class StoragesController < ApplicationController
 
   def my_storages
     @storages = current_user.storages.where(active: true)
+    @markers = @storages.map do |storage|
+      {
+        lat: storage.latitude,
+        lng: storage.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { storage: storage }),
+        image_url: helpers.asset_url('red_pin.png')
+      }
+    end
   end
 
   def index
@@ -35,6 +43,12 @@ class StoragesController < ApplicationController
       flash[:alert] = "Sorry this storage doesn't exist anymore"
     end
     @booking = Booking.new
+    @markers = [{
+      lat: @storage.latitude,
+      lng: @storage.longitude,
+      infoWindow: render_to_string(partial: "infowindow", locals: { storage: @storage }),
+      image_url: helpers.asset_url('red_pin.png')
+    }]
   end
 
   def new
