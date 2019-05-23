@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_storage, only: [:create]
+  before_action :set_storage, only: [:create, :approved, :denied]
 
   def index
     @bookings = current_user.bookings
@@ -24,6 +24,20 @@ class BookingsController < ApplicationController
     else
       render 'storage/show'
     end
+
+  def approved
+    @booking = Booking.find(params[:id])
+    @booking.status = 'accepted'
+    @booking.save
+    redirect_to root_path
+  end
+
+  def denied
+    @booking.status = 'denied'
+    @booking.save
+    redirect_to storage_path(@storage)
+  end
+
   end
 
   private
@@ -33,6 +47,6 @@ class BookingsController < ApplicationController
   end
 
   def strong_params
-    params.require(:booking).permit(:end_date, :start_date, :storage_id, :user_id)
+    params.require(:booking).permit(:end_date, :start_date, :storage_id, :user_id, :status)
   end
 end

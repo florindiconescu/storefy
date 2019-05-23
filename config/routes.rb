@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
   get '/my_storages', to: 'storages#my_storages'
+  patch '/bookings/:id/approved', to: 'bookings#approved', as: 'approved'
   resources :storages do
     resources :bookings, only: [:new, :create]
     resources :photos, only: [:create, :index]
