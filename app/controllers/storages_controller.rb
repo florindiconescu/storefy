@@ -61,7 +61,7 @@ class StoragesController < ApplicationController
     authorize @storage
     @storage.user = current_user
     if @storage.save
-      redirect_to my_storages_path
+      redirect_to storage_photos_path(@storage)
     else
       render 'new'
     end

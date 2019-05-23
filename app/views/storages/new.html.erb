@@ -1,13 +1,12 @@
-<h1>List a new storage</h1>
-<%= simple_form_for @storage do |f| %>
-  <%= f.error_notification %>
-  <p><%= f.input :title %></p>
-  <p><%= f.input :address %></p>
-  <p><%= f.input :sqm %></p>
-  <p><%= f.input :description %></p>
-  <p><%= f.input :price %></p>
-  <%= f.button :submit, class: "btn-outline-success" %>
-  <%= f.button :button, "Cancel", type: "reset", class: "btn-outline-secondary" %>
-  <%= link_to 'Back to storages', my_storages_path, class: "btn btn-outline-info" %>
-<% end %>
+<div class="form border border-dark p-5" style="width: 600px; margin: 16px auto;">
+  <%= simple_form_for @storage do |f| %>
+    <h3>List a new storage</h3>
+    <p><%= f.input :title, label: "Title", placeholder: "storage title" %></p>
+    <p><%= f.input :address, label: "Address", placeholder: "storage adress" %></p>
+    <p><%= f.input :sqm, label: "Surface", placeholder: "how many sqm?" %></p>
+    <p><%= f.input :description, label: "Description", placeholder: "describe your storage" %></p>
+    <p><%= f.input :price, label: "Price", placeholder: "monthly price" %></p>
+    <%= f.button :submit, class: "btn-book w-100 mt-3 mb-0" %>
+  <% end %>
+</div>
 
