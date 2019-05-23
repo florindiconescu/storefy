@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'photos/index'
-  get 'photos/create'
-  get 'photos/destroy'
   devise_for :users
   root to: 'pages#home'
   get '/my_storages', to: 'storages#my_storages'
