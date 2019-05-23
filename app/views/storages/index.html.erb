@@ -1,18 +1,22 @@
 
 <h1>Welcome to Storify's storages</h1>
 <div class="page d-flex">
-<div class="cards-storages">
-  <% @storages.each do |storage| %>
-    <%= link_to storage_path(storage) do%>
-      <div class="card-storage">
-        <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80">
-        <div class="card-storage-infos">
-          <div>
-            <h2><%= storage.title %></h2>
-            <p><%= storage.price %> € / month</p>
-            <p><%= storage.description %></p>
-            <p> the storage is located it the <%= storage.address %> district</p>
-          </div>
+  <div class="cards-storages">
+    <% @storages.each do |storage| %>
+      <%= link_to storage_path(storage) do%>
+        <div class="card-storage">
+          <% if storage.photos.present? %>
+            <%= cl_image_tag storage.photos.first.data %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80">
+          <% end %>
+          <div class="card-storage-infos">
+            <div>
+              <h2><%= storage.title %></h2>
+              <p><%= storage.price %> € / month</p>
+              <p><%= storage.description %></p>
+              <p> the storage is located it the <%= storage.address %> district</p>
+            </div>
             <h2 class="card-storage-sqm"><%= storage.sqm %> sqm</h2>
             <% if storage.user.photo.present? %>
               <%= cl_image_tag storage.user.photo, class: "card-storage-user avatar-bordered" %>
@@ -20,18 +24,17 @@
               <i class="far fa-user fa-2x", id= "navbarDropdown", data-toggle= "dropdown", aria-haspopup= true, aria-expanded= false, ></i>
           <% end %>
         </div>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
-</div>
-<div class="m-4"
-  id="map"
-  style="width: 100%;
-  height: 100vh;
-  position: sticky;
-  top: 0;"
-  data-markers="<%= @markers.to_json %>"
-  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+  </div>
+  <div class="m-4"
+    id="map"
+    style="width: 100%;
+    height: 100vh;
+    position: sticky;
+    top: 0;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
 </div>
 
