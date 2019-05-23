@@ -17,9 +17,12 @@
               <p><%= storage.description %></p>
               <p> the storage is located it the <%= storage.address %> district</p>
             </div>
-              <h2 class="card-storage-sqm"><%= storage.sqm %> sqm</h2>
+            <h2 class="card-storage-sqm"><%= storage.sqm %> sqm</h2>
+            <% if storage.user.photo.present? %>
               <%= cl_image_tag storage.user.photo, class: "card-storage-user avatar-bordered" %>
-          </div>
+            <% else %>
+              <i class="far fa-user fa-2x", id= "navbarDropdown", data-toggle= "dropdown", aria-haspopup= true, aria-expanded= false, ></i>
+          <% end %>
         </div>
       <% end %>
     <% end %>
@@ -34,3 +37,4 @@
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
   ></div>
 </div>
+
