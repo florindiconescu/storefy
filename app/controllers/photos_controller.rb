@@ -3,8 +3,7 @@ class PhotosController < ApplicationController
 
   def index
     @photo = Photo.new
-    @photos = @storage.photos
-    @photos = policy_scope(Storage)
+    @photos = policy_scope(Photo).where(storage: @storage)
   end
 
   def create
@@ -21,9 +20,10 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    @photo = Photo.find(params[:id])
     authorize @photo
-    @photo.active = false
-    @photo.save
+    @photo.destroy
+    @storage = @photo.storage
     redirect_to storage_photos_path(@storage)
   end
 
