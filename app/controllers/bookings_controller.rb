@@ -25,7 +25,7 @@ class BookingsController < ApplicationController
     @booking.user = @user
     @booking.total_price = @booking.storage.price / 30 * (@booking.end_date - @booking.start_date).to_i
     if @booking.save
-      redirect_to storage_path(@storage)
+      redirect_to bookings_path
     else
       render 'storage/show'
     end
