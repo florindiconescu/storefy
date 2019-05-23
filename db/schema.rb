@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_22_105858) do
+ActiveRecord::Schema.define(version: 2019_05_22_105858)
+ActiveRecord::Schema.define(version: 2019_05_22_124959)
+ActiveRecord::Schema.define(version: 2019_05_22_105858)
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,9 +47,9 @@ ActiveRecord::Schema.define(version: 2019_05_22_105858) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "active", default: true
     t.float "longitude"
     t.float "latitude"
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_storages_on_user_id"
   end
 
@@ -63,6 +65,7 @@ ActiveRecord::Schema.define(version: 2019_05_22_105858) do
     t.string "last_name"
     t.boolean "owner", default: false
     t.string "photo"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
