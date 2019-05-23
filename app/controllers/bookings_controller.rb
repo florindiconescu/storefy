@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :set_storage, only: [:create, :approved, :denied]
+  before_action :set_storage, only: [:create]
 
   def index
     @bookings = current_user.bookings
@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
   def create
     @user = current_user
     @booking = Booking.new(strong_params)
+    @booking.status = 'pending'
     @booking.storage = @storage
     @booking.user = @user
     @booking.total_price = @booking.storage.price / 30 * (@booking.end_date - @booking.start_date).to_i
@@ -24,20 +25,20 @@ class BookingsController < ApplicationController
     else
       render 'storage/show'
     end
+  end
 
   def approved
     @booking = Booking.find(params[:id])
     @booking.status = 'accepted'
     @booking.save
-    redirect_to root_path
+    redirect_to storage_path(@booking.storage)
   end
 
   def denied
+    @booking = Booking.find(params[:id])
     @booking.status = 'denied'
     @booking.save
-    redirect_to storage_path(@storage)
-  end
-
+    redirect_to storage_path(@booking.storage)
   end
 
   private
