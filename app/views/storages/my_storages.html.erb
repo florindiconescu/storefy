@@ -1,9 +1,9 @@
-<h1>My storages</h1>
+<h1 class="mt-3 mb-0 ml-3">My storages</h1>
 <div class="page d-flex">
   <div class="cards-storages">
     <% @storages.each do |storage| %>
       <%= link_to storage_path(storage) do%>
-        <div class="card-storage">
+        <div class="card-storage ml-3">
           <% if storage.photos.present? %>
               <%= cl_image_tag storage.photos.first.data %>
           <% else %>
