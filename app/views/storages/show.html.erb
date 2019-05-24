@@ -27,9 +27,9 @@
       <div class="storage-text-content mr-5">
         <h1><%= @storage.title.capitalize %></h1>
         <p>This storage is located in <%= @storage.address %></p>
+        <p><strong>Description:</strong> <%= @storage.description %></p>
         <p><strong>Price:</strong> <%= @storage.price %> € / month</p>
         <p><strong>Volume:</strong> <%= @storage.sqm %> sqm</p>
-        <p><strong>Description:</strong> <%= @storage.description %></p>
 
       <% if policy(@storage).edit? %>
       <%= link_to 'Edit ✏️', edit_storage_path(@storage), class: "btn btn-outline-secondary" %>
@@ -38,10 +38,17 @@
       <%= link_to 'Delete 🗑', @storage, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-outline-danger" %>
       <% end %>
        </div>
-      <% if current_user.photo.present? %>
-        <%= cl_image_tag @storage.user.photo, id: "user_photo" %>
+
+      <% if @storage.user.photo.present? %>
+        <div class="text-center">
+          <%= cl_image_tag @storage.user.photo, id: "user_photo" %>
+          <p class="mt-3"><%= @storage.user.first_name %></p>
+        </div>
       <% else %>
-        <i class="far fa-user fa-2x", id= "navbarDropdown", data-toggle= "dropdown", aria-haspopup= true, aria-expanded= false, ></i>
+        <div class="text-center">
+          <img src="<%= image_path 'icon.png' %>" alt="" id= "user_photo">
+          <p class="mt-3"><%= @storage.user.first_name %></p>
+        </div>
       <% end %>
        </div>
 
@@ -53,17 +60,17 @@
             <div class="card-booking-infos d-flex justify-content-around p-4" style="width: 450px">
               <div class="booking-info text-left mt-2">
                   <p class="mt-2"><strong>Guest:</strong> <%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
-                  <p><strong>Price:</strong> <%= @storage.price * (booking.end_date - booking.start_date).to_i %> €</p>
+                  <p><strong>Revenue:</strong> <%= @storage.price * (booking.end_date - booking.start_date).to_i %> €</p>
                   <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
                   <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
                   <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
-                  <p class="mb-2"><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
+                  <p class="mb-2"><strong>Owner:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
               </div>
               <div class="booking-status mt-2">
                 <p class="mt-2"><strong>Status:</strong> <%= booking.status %></p>
                 <% if booking.status == 'pending' %>
-                <p class="btn btn-outline-success btn-sm"><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
-                <p class="btn btn-outline-danger btn-sm"><%= link_to 'Decline', denied_path(booking), method: :patch %></p>
+                  <p class="btn btn-outline-success btn-sm"><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
+                  <p class="btn btn-outline-danger btn-sm"><%= link_to 'Decline', denied_path(booking), method: :patch %></p>
                 <% end %>
               </div>
             </div>
