@@ -11,6 +11,14 @@ a {
   margin-top: 24px;
 }
 
+.card-storage:hover {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.7);
+  width: 700px;
+  margin-top: 24px;
+}
+
 .card-storage > img {
   height: 200px;
   width: 100%;
@@ -92,4 +100,9 @@ h5 span {
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   margin: auto;
   margin-bottom: 20px;
+}
+
+.link_to_card:hover {
+  text-decoration: none;
+  color: black;
 }
