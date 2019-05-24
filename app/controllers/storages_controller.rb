@@ -8,7 +8,7 @@ class StoragesController < ApplicationController
         lat: storage.latitude,
         lng: storage.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { storage: storage }),
-        image_url: helpers.asset_url('red_pin.png')
+        image_url: helpers.asset_url('Storify_logo.png')
       }
     end
   end
@@ -31,7 +31,7 @@ class StoragesController < ApplicationController
         lat: storage.latitude,
         lng: storage.longitude,
         infoWindow: render_to_string(partial: "infowindow", locals: { storage: storage }),
-        image_url: helpers.asset_url('red_pin.png')
+        image_url: helpers.asset_url('Storify_logo.png')
       }
     end
   end
@@ -47,7 +47,7 @@ class StoragesController < ApplicationController
       lat: @storage.latitude,
       lng: @storage.longitude,
       infoWindow: render_to_string(partial: "infowindow", locals: { storage: @storage }),
-      image_url: helpers.asset_url('red_pin.png')
+      image_url: helpers.asset_url('Storify_logo.png')
     }]
   end
 

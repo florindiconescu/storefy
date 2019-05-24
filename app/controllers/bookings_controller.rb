@@ -33,6 +33,7 @@ class BookingsController < ApplicationController
 
   def approved
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.status = 'accepted'
     @booking.save
     redirect_to storage_path(@booking.storage)
@@ -40,6 +41,7 @@ class BookingsController < ApplicationController
 
   def denied
     @booking = Booking.find(params[:id])
+    authorize @booking
     @booking.status = 'denied'
     @booking.save
     redirect_to storage_path(@booking.storage)

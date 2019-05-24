@@ -1,5 +1,15 @@
-<%= cl_image_tag current_user.photo, id: "user_photo" %> <br>
-<%= @user.first_name %>
-<%= @user.last_name %> <br>
-<%= @user.email %> <br>
-<%= link_to "Edit my Profile", edit_user_registration_path %>
+<div class="d-flex justify-content-center mt-5">
+  <div class="card text-left" style="width: 18rem;">
+    <div class="d-flex justify-content-center">
+      <%= cl_image_tag current_user.photo, id: "user_photo" %>
+    </div>
+    <br>
+    <div class="card-body">
+      <p class="card-title">First name: <strong><%= @user.first_name.capitalize %></strong></p>
+      <p class="card-text">Last name: <strong><%= @user.last_name.capitalize %></strong></p>
+      <p class="card-text">Email: <%= @user.email %></p>
+      <%= link_to "Edit", edit_user_registration_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>
+
