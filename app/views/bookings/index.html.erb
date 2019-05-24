@@ -1,20 +1,22 @@
-<h1 class="text-center mt-4 mb-4">Details of all your <span>Bookings</span></h1>
+<h1 class="text-center mt-4 mb-4">Your <span class="underline">Bookings</span></h1>
 
 <div class="cards-bookings mb-5">
   <% s_bookings = @bookings.sort.reverse %>
   <% s_bookings.each do |booking| %>
     <div class="card-booking">
       <img src="https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80">
-        <div class="card-booking-infos">
-          <h5><span><%= booking.storage.title %></span></h5>
-          <p><strong>User:</strong> <%= booking.user.first_name.capitalize %></p>
+        <div class="card-booking-infos d-flex justify-content-between p-4">
+          <div>
+          <h5><span class="underline"><%= booking.storage.title %></span></h5>
           <p><strong>Status:</strong> <%= booking.status %></p>
-
-          <p><strong>Price:</strong> <%= booking.storage.price / 30 * (booking.end_date - booking.start_date).to_i %> €</p>
+          <p><strong>Owner:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
+          </div>
+          <div class="border-left border-info">
           <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
           <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
           <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
-          <p><strong>Belongs to:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
+          <p><strong>Price:</strong> <%= booking.storage.price / 30 * (booking.end_date - booking.start_date).to_i %> €</p>
+          </div>
         </div>
     </div>
   <% end %>
