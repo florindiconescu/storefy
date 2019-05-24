@@ -1,6 +1,8 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "Storefy", root_path, class: "nav-link text-dark font-weight-bold border border-info" %>
-  <img src=" <%= image_path 'Storify_logo.png'%>" alt="" style="height: 50px">
+  <div class="d-flex">
+  <%= link_to "Storefy", root_path, class: "nav-link text-dark font-weight-bold border border-info mr-3" %>
+  <img src=" <%= image_path 'Storify_logo.png'%>" alt="" style="height: 45px">
+  </div>
   <div class="navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>

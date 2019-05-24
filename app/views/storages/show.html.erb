@@ -47,7 +47,7 @@
 
       <% if @storage.user == current_user %>
         <div class="title text-center">
-          <h3 class="mb-4">Bookings</h3>
+          <h3 class="mb-4"><span>Bookings</span></h3>
           <div class="cards-booking" >
             <% @storage.bookings.each do |booking| %>
             <div class="card-booking-infos d-flex justify-content-around p-4" style="width: 450px">
