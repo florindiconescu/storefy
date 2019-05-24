@@ -2,7 +2,7 @@
 <div class="page d-flex">
   <div class="cards-storages">
     <% @storages.each do |storage| %>
-      <%= link_to storage_path(storage) do%>
+      <%= link_to storage_path(storage), class: "link_to_card" do%>
         <div class="card-storage ml-3">
           <% if storage.photos.present? %>
               <%= cl_image_tag storage.photos.first.data %>

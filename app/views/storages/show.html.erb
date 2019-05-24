@@ -26,7 +26,7 @@
     <div class="storage-content d-flex">
       <div class="storage-text-content mr-5">
         <h1><%= @storage.title.capitalize %></h1>
-        <p>This storage is located in <%= @storage.address %></p>
+        <p><%= @storage.address %></p>
         <p><strong>Description:</strong> <%= @storage.description %></p>
         <p><strong>Price:</strong> <%= @storage.price %> € / month</p>
         <p><strong>Volume:</strong> <%= @storage.sqm %> sqm</p>
@@ -47,7 +47,7 @@
       <% else %>
         <div class="text-center">
           <img src="<%= image_path 'icon.png' %>" alt="" id= "user_photo">
-          <p class="mt-3"><%= @storage.user.first_name %></p>
+          <p class="mt-3"><%= @storage.user.first_name.capitalize %></p>
         </div>
       <% end %>
        </div>
@@ -55,7 +55,7 @@
       <% if @storage.user == current_user %>
         <div class="title text-center">
           <h3 class="mb-4"><span>Bookings</span></h3>
-          <div class="cards-booking" >
+          <div class="cards-booking mb-4" >
             <% @storage.bookings.each do |booking| %>
             <div class="card-booking-infos d-flex justify-content-around p-4" style="width: 450px">
               <div class="booking-info text-left mt-2">
@@ -66,7 +66,7 @@
                   <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
                   <p class="mb-2"><strong>Owner:</strong> <%= booking.storage.user.first_name.capitalize %> </p>
               </div>
-              <div class="booking-status mt-2">
+              <div class="booking-status mt-2 pl-2 border-left border-info">
                 <p class="mt-2"><strong>Status:</strong> <%= booking.status %></p>
                 <% if booking.status == 'pending' %>
                   <p class="btn btn-outline-success btn-sm"><%= link_to 'Accept', approved_path(booking), method: :patch %></p>
@@ -84,7 +84,7 @@
             <h3>Book this storage</h3>
             <p><%= f.input :start_date, as: :string, required: false, label: "Check-in", input_html: { class: "datepicker" }, placeholder: "Select a date" %></p>
             <p><%= f.input :end_date, as: :string, required: false, label: "Check-out", input_html: { class: "datepicker" }, placeholder: "Select a date"  %></p>
-            <%= f.button :submit, class: "btn-book w-100 mt-3 mb-0" %>
+            <%= f.button :submit, class: "btn-book w-100 mt-3 mb-0", value: "Book Now" %>
           <% end %>
         </div>
       <% end %>
