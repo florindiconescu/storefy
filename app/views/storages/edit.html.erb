@@ -1,11 +1,16 @@
-<h1>Edit <%= @storage.title %>?</h1>
-<%= simple_form_for @storage do |f| %>
-  <p><%= f.input :title %></p>
-  <p><%= f.input :address %></p>
-  <p><%= f.input :sqm %></p>
-  <p><%= f.input :description %></p>
-  <p><%= f.input :price %></p>
-  <%= f.button :submit, class: "btn-outline-success" %>
-  <%= link_to 'Add some pictures', storage_photos_path(@storage), class: "btn btn-outline-info" %>
-  <%= link_to 'Back to storages', my_storages_path, class: "btn btn-outline-info" %>
-<% end %>
+<div class="form border border-dark p-5" style="width: 600px; margin: 16px auto;">
+  <%= simple_form_for @storage do |f| %>
+    <h3>Edit <%= @storage.title %></h3>
+    <p><%= f.input :title %></p>
+    <p><%= f.input :address %></p>
+    <p><%= f.input :sqm %></p>
+    <p><%= f.input :description %></p>
+    <p><%= f.input :price %></p>
+    <p><%= f.button :submit, class: "btn-book w-100 mt-3 mb-0" %></p>
+  <% end %>
+  <div class="d-flex">
+    <%= link_to 'Back', storage_path(@storage), class: "btn btn-outline-secondary mr-3" %>
+    <%= link_to 'Add photos', storage_photos_path(@storage), class: "btn btn-outline-secondary" %>
+  </div>
+</div>
+
