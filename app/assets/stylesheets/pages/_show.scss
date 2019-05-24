@@ -13,3 +13,18 @@
   border: 1px solid black;
   border-radius: 10px;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.banner-pic {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vh;
+}
