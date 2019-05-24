@@ -1,15 +1,13 @@
-<h1>Upload photos for your <%= link_to @storage.title, storage_path(@storage) %></h1>
-
-<%= simple_form_for [@storage, @photo] do |f|  %>
-  <%= f.input :data, label: false %>
-  <%= f.input :data_cache, as: :hidden %>
-  <%= f.submit 'Add photo' %>
-<% end %>
-
-
-
-
-<%  @photos.each do |photo| %>
+<div class="form border border-dark p-5" style="width: 600px; margin: 16px auto;">
+  <%= simple_form_for [@storage, @photo] do |f| %>
+    <h3>Add photos for <%= @storage.title %></h3>
+    <%= f.input :data, label: false, class: "btn-outline-secondary" %>
+    <%= f.input :data_cache, as: :hidden %>
+    <%= f.submit 'Add photo', class: "btn btn-outline-secondary" %>
+    <%= link_to 'Done', storage_path(@storage), class: "btn btn-book w-100 mt-3 mb-0" %>
+  <% end %>
+</div>
+<% @photos.each do |photo| %>
   <%= cl_image_tag photo.data, id: 'photo_upload' %>
   <%= link_to 'Delete 🗑', photo, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-info" %>
 <% end %>
