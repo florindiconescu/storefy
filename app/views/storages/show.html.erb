@@ -1,5 +1,5 @@
 <div class="grid">
-  <div class="column banner-pic" style="background-image: url('<%= cl_image_path (@storage.photos.first&.data || "https://images.unsplash.com/photo-1556611832-c5f358b0057e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80") %>');">
+  <div class="column banner-pic" style="background-image: url('<%= cl_image_path @storage.photos.first.data %>');">
     <%# if @storage.photos.present? %>
       <%# cl_image_tag @storage.photos.first.data, id: 'photo_upload' %>
       <div class="other-photos">
@@ -24,7 +24,7 @@
 
 <div class="container d-flex justify-content-around pt-5">
     <div class="storage-content d-flex">
-      <div class="storage-text-content mr-5">
+      <div class="storage-text-content mr-5" style="max-width: 480px">
         <h1><%= @storage.title.capitalize %></h1>
         <p><%= @storage.address %></p>
         <p><strong>Description:</strong> <%= @storage.description %></p>
