@@ -53,7 +53,7 @@
             <div class="card-booking-infos d-flex justify-content-around p-4" style="width: 450px">
               <div class="booking-info text-left mt-2">
                   <p class="mt-2"><strong>Guest:</strong> <%= booking.user.first_name.capitalize %> <%= booking.user.last_name.capitalize %></p>
-                  <p><strong>Price:</strong> <%= booking.total_price %> €</p>
+                  <p><strong>Price:</strong> <%= @storage.price * (booking.end_date - booking.start_date).to_i %> €</p>
                   <p><strong>Check-in:</strong> <%= booking.start_date.to_formatted_s(:long) %> </p>
                   <p><strong>Check-out:</strong> <%= booking.end_date.to_formatted_s(:long) %> </p>
                   <p><strong>Duration:</strong> <%= (booking.end_date - booking.start_date).to_i %> days</p>
